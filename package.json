@@ -1,0 +1,52 @@
+{
+  "name": "efcalc",
+  "version": "1.0.0",
+  "description": "Modern, cross-platform EfCalc calculator",
+  "main": "main.js",
+  "author": "EfCalc",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis",
+    "dist:mac": "electron-builder --mac dmg"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.efcalc.app",
+    "productName": "EfCalc",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "style.css",
+      "renderer.js",
+      "package.json",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "EfCalc-Windows-Setup-${version}.${ext}",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.utilities",
+      "artifactName": "EfCalc-macOS-${version}.${ext}"
+    }
+  }
+}

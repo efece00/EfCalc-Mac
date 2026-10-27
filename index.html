@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>EfCalc</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">e<span>ƒ</span></div>
+        <div>
+          <div class="brand-title">EfCalc</div>
+          <div class="brand-subtitle">Hesaplamanın sade hâli</div>
+        </div>
+      </div>
+      <button id="history-toggle" class="icon-btn" title="İşlem geçmişi" aria-label="İşlem geçmişi">↶</button>
+    </header>
+
+    <section class="display-card">
+      <div id="expression" class="expression">&nbsp;</div>
+      <div id="display" class="display" aria-live="polite">0</div>
+      <div class="display-caption">SONUÇ</div>
+    </section>
+
+    <section class="keypad" aria-label="Hesap makinesi tuşları">
+      <button class="key utility" data-action="clear">AC</button>
+      <button class="key utility" data-action="backspace" aria-label="Son karakteri sil">⌫</button>
+      <button class="key utility" data-action="percent">%</button>
+      <button class="key operator" data-op="/">÷</button>
+
+      <button class="key" data-digit="7">7</button>
+      <button class="key" data-digit="8">8</button>
+      <button class="key" data-digit="9">9</button>
+      <button class="key operator" data-op="*">×</button>
+
+      <button class="key" data-digit="4">4</button>
+      <button class="key" data-digit="5">5</button>
+      <button class="key" data-digit="6">6</button>
+      <button class="key operator" data-op="-">−</button>
+
+      <button class="key" data-digit="1">1</button>
+      <button class="key" data-digit="2">2</button>
+      <button class="key" data-digit="3">3</button>
+      <button class="key operator" data-op="+">+</button>
+
+      <button class="key utility" data-action="sign">+/−</button>
+      <button class="key zero" data-digit="0">0</button>
+      <button class="key" data-action="decimal">.</button>
+      <button class="key equals" data-action="equals">=</button>
+    </section>
+
+    <footer class="footer"><span class="status-dot"></span> EfCalc <span class="footer-divider">•</span> Basit. Hızlı. Net.</footer>
+  </main>
+
+  <aside id="history-panel" class="history-panel hidden" aria-label="İşlem geçmişi">
+    <div class="history-heading">
+      <div>
+        <h2>Geçmiş</h2>
+        <p>Son hesaplamaların</p>
+      </div>
+      <button id="history-clear" class="clear-history">Temizle</button>
+    </div>
+    <div id="history-list" class="history-list">
+      <div class="empty-history">Henüz işlem yok</div>
+    </div>
+  </aside>
+  <script src="renderer.js"></script>
+</body>
+</html>
