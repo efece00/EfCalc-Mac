@@ -1,5 +1,5 @@
 
-name: Mac Uygulamasini Olustur
+name: Build Mac App
 
 on:
   workflow_dispatch:
@@ -10,24 +10,22 @@ on:
 jobs:
   build-mac:
     runs-on: macos-latest
-
     steps:
-      - name: Projeyi indir
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Node.js kur
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Paketleri kur
+      - name: Install dependencies
         run: npm ci
 
-      - name: Mac uygulamasini derle
-       run: npm run dist:mac -- --publish never
+      - name: Build Mac DMG
+        run: npm run dist:mac -- --publish never
 
-      - name: DMG dosyasini yukle
+      - name: Upload DMG
         uses: actions/upload-artifact@v4
         with:
           name: EfCalc-Mac
