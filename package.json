@@ -30,9 +30,7 @@
       "assets/**/*"
     ],
     "win": {
-      "target": [
-        "nsis"
-      ],
+      "target": ["nsis"],
       "artifactName": "EfCalc-Windows-Setup-${version}.${ext}",
       "icon": "assets/icon.ico"
     },
@@ -44,11 +42,10 @@
     },
     "mac": {
       "target": [
-        "dmg"
-      ],
-      "arch": [
-        "x64",
-        "arm64"
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
       ],
       "category": "public.app-category.utilities",
       "artifactName": "EfCalc-macOS-${version}.${ext}"
