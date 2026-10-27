@@ -1,0 +1,35 @@
+
+name: Mac Uygulamasini Olustur
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - ana
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+
+    steps:
+      - name: Projeyi indir
+        uses: actions/checkout@v4
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Paketleri kur
+        run: npm ci
+
+      - name: Mac uygulamasini derle
+        run: npm run dist:mac
+
+      - name: DMG dosyasini yukle
+        uses: actions/upload-artifact@v4
+        with:
+          name: EfCalc-Mac
+          path: dist/*.dmg
+          if-no-files-found: error
