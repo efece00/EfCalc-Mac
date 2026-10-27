@@ -1,11 +1,14 @@
 
-name: Build Mac App
+name: Build and Publish Mac App
 
-'on':
+on:
   workflow_dispatch:
   push:
     branches:
       - ana
+
+permissions:
+  contents: write
 
 jobs:
   build-mac:
@@ -25,9 +28,12 @@ jobs:
       - name: Build Mac DMG
         run: npm run dist:mac -- --publish never
 
-      - name: Upload DMG
-        uses: actions/upload-artifact@v4
+      - name: Publish Mac DMG
+        uses: softprops/action-gh-release@v2
         with:
-          name: EfCalc-Mac
-          path: dist/*.dmg
-          if-no-files-found: error
+          tag_name: v1.0.0
+          name: EfCalc Mac v1.0.0
+          files: dist/*.dmg
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
